@@ -6,5 +6,6 @@
 }
 
 .inner-game-grid {
-  
+  display: inline-grid;
+  grid-template-rows: auto auto auto;
 }
