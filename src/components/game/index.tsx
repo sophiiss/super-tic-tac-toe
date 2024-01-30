@@ -4,10 +4,6 @@ import styles from './game.module.css';
 
 type Minigame = boolean;
 
-export type Coords = [number, number];
-
-type NextCoords = Coords | null;
-
 export type MinigamesArray = [
   [Minigame, Minigame, Minigame],
   [Minigame, Minigame, Minigame],
@@ -19,6 +15,9 @@ type MinigameContext = {
   handle_hover: (next_coords: Coords) => void;
   handle_unhover: () => void;
 };
+
+export type Coords = [number, number];
+type NextCoords = Coords | null;
 
 const handle_hover = () => {};
 const handle_unhover = () => {};
