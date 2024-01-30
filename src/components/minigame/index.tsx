@@ -1,8 +1,9 @@
 import { Square } from './square';
 import styles from './minigame.module.css';
-import { useState } from 'react';
+import { FC, useContext, useState } from 'react';
+import type { Coords } from '../game';
+import { next_minigame } from '../game';
 
-export type Coords = [number, number];
 type FilledSquare = true | false | null;
 
 export type SquaresArray = [
@@ -11,13 +12,28 @@ export type SquaresArray = [
   [FilledSquare, FilledSquare, FilledSquare],
 ];
 
-export const Minigame = () => {
+type MinigameProps = {
+  minigame_coords: Coords;
+};
+
+export const Minigame: FC<MinigameProps> = ({ minigame_coords }) => {
   const [current_letter, set_letter] = useState(false);
   const [squares_array, set_squares_array] = useState<SquaresArray>([
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ]);
+
+  const { next_minigame_coords, handle_hover, handle_unhover } =
+    useContext(next_minigame);
+
+  const handle_square_hover = (square_coords: Coords) => {
+    handle_hover(square_coords);
+  };
+
+  const handle_square_unhover = () => {
+    handle_unhover();
+  };
 
   const handle_click = (coords: Coords) => {
     console.log(squares_array);
@@ -32,7 +48,14 @@ export const Minigame = () => {
   let key_inner = 1000;
 
   return (
-    <div className={styles['minigame-grid']}>
+    <div
+      className={styles['minigame-grid']}
+      data-is_next={
+        next_minigame_coords?.toString() === minigame_coords.toString()
+          ? 'true'
+          : 'false'
+      }
+    >
       {squares_array.map((outer, outer_index) => {
         key++;
         return (
@@ -41,6 +64,8 @@ export const Minigame = () => {
               key_inner++;
               return (
                 <Square
+                  on_mouse_leave={handle_square_unhover}
+                  on_mouse_enter={handle_square_hover}
                   key={key_inner}
                   current_matrix={squares_array}
                   on_click={handle_click}

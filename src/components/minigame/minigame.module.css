@@ -2,6 +2,11 @@
   display: inline-grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto;
+  border-radius: 16px;
+}
+
+.minigame-grid[data-is_next='true'] {
+  border: 4px solid var(--primary);
 }
 
 .mini-minigame-grid {
