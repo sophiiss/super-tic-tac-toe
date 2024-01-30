@@ -29,7 +29,7 @@ export const next_minigame = createContext<MinigameContext>({
 });
 
 export const Game = () => {
-  const [minigames_array, set_minigames_array] = useState<MinigamesArray>([
+  const [minigames_array, _set_minigames_array] = useState<MinigamesArray>([
     [false, false, false],
     [false, false, false],
     [false, false, false],
