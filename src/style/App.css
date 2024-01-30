@@ -1,3 +1,6 @@
+@import url('dark.css');
+@import url('light.css');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -14,12 +17,12 @@ body {
   color-scheme: light dark;
 }
 
-.dark {
-  background-color: rgb(15 21 19);
-  color: rgb(222 228 224);
+.game {
+  background-color: var(--surface);
+  color: var(--on-surface);
 }
 
-.dark {
+/* .dark {
   --surface: rgb(134 214 191);
   --primary: rgb(0 56 45);
   --on-surface: rgb(222 228 224);
@@ -29,12 +32,7 @@ body {
   --surface: rgb(12 107 89);
   --primary: rgb(255 255 255);
   --on-surface: rgb(23 29 27);
-}
-
-.light {
-  background-color: rgb(245 251 247);
-  color: rgb(23 29 27);
-}
+} */
 
 h1 {
   font-size: 3.2em;

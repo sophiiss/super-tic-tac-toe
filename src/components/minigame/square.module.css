@@ -8,6 +8,6 @@
 }
 
 .square:hover {
-  background-color: var(--surface);
-  color: var(--primary);
+  background-color: var(--primary);
+  color: var(--on-primary);
 }

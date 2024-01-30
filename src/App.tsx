@@ -50,7 +50,7 @@ export const App = () => {
 
   return (
     <theme_context.Provider value={{ class_name, toggle_theme }}>
-      <div className={class_name}>
+      <div className={`${class_name} game`}>
         <h1>Jogo da Velha 4D</h1>
         <button onClick={toggle_theme}>Mudar</button>
         <Game />
