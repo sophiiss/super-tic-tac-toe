@@ -5,6 +5,7 @@
   background: transparent;
   border: none;
   color: var(--on-surface);
+  border-radius: 16px;
 }
 
 .square:hover {
