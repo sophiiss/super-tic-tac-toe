@@ -4,6 +4,7 @@ import { FC, useContext, useState } from 'react';
 import type { Coords } from '../game';
 import { next_minigame } from '../game';
 
+// null = not clicked | true = O | false = X
 type FilledSquare = true | false | null;
 
 export type SquaresArray = [
@@ -17,13 +18,13 @@ type MinigameProps = {
 };
 
 export const Minigame: FC<MinigameProps> = ({ minigame_coords }) => {
-  const [current_letter, set_letter] = useState(false);
   const [squares_array, set_squares_array] = useState<SquaresArray>([
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ]);
 
+  // game highlighting
   const { next_minigame_coords, handle_hover, handle_unhover } =
     useContext(next_minigame);
 
@@ -35,15 +36,17 @@ export const Minigame: FC<MinigameProps> = ({ minigame_coords }) => {
     handle_unhover();
   };
 
-  const handle_click = (coords: Coords) => {
-    console.log(squares_array);
+  // handle click on the square
+  const [current_letter, set_letter] = useState(false);
 
+  const handle_click = (coords: Coords) => {
     const squares_array_copy = squares_array;
     squares_array_copy[coords[0]][coords[1]] = current_letter;
     set_squares_array(squares_array_copy);
     set_letter((previous) => !previous);
   };
 
+  // iterators for rendering the squares
   let key = 0;
   let key_inner = 1000;
 

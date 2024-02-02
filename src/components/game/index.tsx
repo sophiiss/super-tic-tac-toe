@@ -2,7 +2,11 @@ import { createContext, useState } from 'react';
 import { Minigame } from '../minigame';
 import styles from './game.module.css';
 
-type Minigame = boolean;
+type Minigame = {
+  next: boolean;
+  finished: boolean;
+  winner?: boolean;
+};
 
 export type MinigamesArray = [
   [Minigame, Minigame, Minigame],
@@ -28,11 +32,17 @@ export const next_minigame = createContext<MinigameContext>({
   handle_unhover,
 });
 
+const base_minigame: Minigame = {
+  next: false,
+  finished: false,
+  winner: false,
+};
+
 export const Game = () => {
   const [minigames_array, _set_minigames_array] = useState<MinigamesArray>([
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
+    [{ ...base_minigame }, { ...base_minigame }, { ...base_minigame }],
+    [{ ...base_minigame }, { ...base_minigame }, { ...base_minigame }],
+    [{ ...base_minigame }, { ...base_minigame }, { ...base_minigame }],
   ]);
 
   const [current_minigame_coords, set_minigame_coords] =
